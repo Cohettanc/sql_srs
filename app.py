@@ -2,13 +2,17 @@ import streamlit as st
 import pandas as pd
 import duckdb
 
-st.write("Hello Write")
+st.write("Spaced Repetition Sytem for SQL")
 data = {"a": [8, 8, 9]}
 df = pd.DataFrame(data)
 
-tab1= st.tabs(["SQL Quizz"])
+option = st.selectbox("what would you like to review?",
+                      ["Joins", "GroupBy", "Windows Functions"],
+                      index = None,
+                      placeholder='Select a topic')
 
-with tab1:
-    query_sql = st.text_area(label="entre ton input")
-    st.write(query_sql)
-    st.dataframe(duckdb.sql(query_sql).df())
+
+
+query_sql = st.text_area(label="entre ton input")
+st.write(query_sql)
+st.dataframe(duckdb.sql(query_sql).df())
