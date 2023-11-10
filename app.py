@@ -6,7 +6,12 @@ st.write("Hello Write")
 data = {"a": [8, 8, 9]}
 df = pd.DataFrame(data)
 
-tab1= st.tabs(["SQL Quizz"])
+option = st.selectbox("what would you like to review?",
+                      ["Joins", "GroupBy", "Windows Functions"],
+                      index = None,
+                      placeholder='Select a topic')
+
+tab1 = st.tabs(["SQL Quizz"])
 
 with tab1:
     query_sql = st.text_area(label="entre ton input")
