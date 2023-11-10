@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import duckdb
 
-st.write("Hello Write")
+st.write("Spaced Repetition Sytem for SQL")
 data = {"a": [8, 8, 9]}
 df = pd.DataFrame(data)
 
