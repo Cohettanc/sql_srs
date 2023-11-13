@@ -6,10 +6,11 @@ st.write("Spaced Repetition Sytem for SQL")
 data = {"a": [8, 8, 9]}
 df = pd.DataFrame(data)
 
-option = st.selectbox("what would you like to review?",
-                      ["Joins", "GroupBy", "Windows Functions"],
-                      index = None,
-                      placeholder='Select a topic')
+with st.sidebar:
+    option = st.selectbox("what would you like to review?",
+                          ["Joins", "GroupBy", "Windows Functions"],
+                          index = None,
+                          placeholder='Select a topic')
 
 
 
