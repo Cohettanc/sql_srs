@@ -13,6 +13,6 @@ option = st.selectbox("what would you like to review?",
 
 
 
-query_sql = st.text_area(label="entre ton input")
+query_sql = st.text_area(label="entre ton input pour la requete")
 st.write(query_sql)
 st.dataframe(duckdb.sql(query_sql).df())
