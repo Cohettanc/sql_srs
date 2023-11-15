@@ -3,6 +3,14 @@ import pandas as pd
 import duckdb
 import io
 
+with st.sidebar:
+    option = st.selectbox(
+        "What would you like to review?",
+        ("Joins", "GroupBy", "Windows Functions"),
+        index = None,
+        placeholder= "Select a theme..."
+    )
+
 csv = """
 beverage, price
 orange juice,2,5
