@@ -1,18 +1,51 @@
 import streamlit as st
 import pandas as pd
 import duckdb
+import io
+
+csv = """
+beverage, price
+orange juice,2,5
+Expresso,2
+Tea,3
+"""
+beverages = pd.read_csv(io.StringIO(csv))
+
+csv2 = """
+food_item, food_price
+cookie juice, 2.5
+chocolate, 2
+muffin, 3
+"""
+
+food_items = pd.read_csv(io.StringIO(csv2))
 
 st.write("Spaced Repetition Sytem for SQL")
 data = {"a": [8, 8, 9]}
 df = pd.DataFrame(data)
 
-option = st.selectbox("what would you like to review?",
-                      ["Joins", "GroupBy", "Windows Functions"],
-                      index = None,
-                      placeholder='Select a topic')
+answer = """
+SELECT * FROM beverages
+CROSS JOIN food_items
+"""
 
+solution = duckdb.sql(answer).df()
 
+st.header("enter your code")
+query = st.text_area(label="votre code SQL ici", key="user_input")
+if query:
+    result = duckdb.sql(query).df()
+    st.dataframe(result)
 
-query_sql = st.text_area(label="entre ton input pour la requete")
-st.write(query_sql)
-st.dataframe(duckdb.sql(query_sql).df())
+tab2, tab3 = st.tabs(["Tables", "Solutions"])
+
+with tab2:
+    st.write("table: beverages")
+    st.dataframe(beverages)
+    st.write("table: food_items")
+    st.dataframe(food_items)
+    st.write("expected:")
+    st.dataframe(solution)
+
+with tab3:
+    st.write(answer)
