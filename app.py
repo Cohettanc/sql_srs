@@ -3,13 +3,8 @@ import pandas as pd
 import duckdb
 import io
 
-with st.sidebar:
-    option = st.selectbox(
-        "What would you like to review?",
-        ("Joins", "GroupBy", "Windows Functions"),
-        index = None,
-        placeholder= "Select a theme..."
-    )
+
+### variables declaration
 
 csv = """
 beverage, price
@@ -38,6 +33,16 @@ CROSS JOIN food_items
 """
 
 solution = duckdb.sql(answer).df()
+
+### beginning of the app
+
+with st.sidebar:
+    option = st.selectbox(
+        "What would you like to review?",
+        ("Joins", "GroupBy", "Windows Functions"),
+        index = None,
+        placeholder= "Select a theme..."
+    )
 
 st.header("enter your code")
 query = st.text_area(label="votre code SQL ici", key="user_input")
