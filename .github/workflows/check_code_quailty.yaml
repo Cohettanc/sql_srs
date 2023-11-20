@@ -3,7 +3,7 @@ on: pull_request
 jobs:
   black:
     name: Lint with black
-    runs-on: ubuntu-20.84
+    runs-on: ubuntu-latest
     steps:
       - uses: action/checkout@v3
       - uses: actions/setup-python@v4
